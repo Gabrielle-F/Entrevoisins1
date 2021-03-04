@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AddNeighbourActivity extends AppCompatActivity {
+public class  AddNeighbourActivity extends AppCompatActivity {
 
     @BindView(R.id.avatar)
     ImageView avatar;

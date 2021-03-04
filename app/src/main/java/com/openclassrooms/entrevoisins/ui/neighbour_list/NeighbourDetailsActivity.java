@@ -1,22 +1,21 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
+import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
-public class NeighbourDetails extends AppCompatActivity {
+public class NeighbourDetailsActivity extends AppCompatActivity {
 
-    ImageButton mAddFavorite;
+    ToggleButton mAddFavorite;
     ImageButton mButton;
     ImageView mAvatar;
     TextView mName;
@@ -26,42 +25,62 @@ public class NeighbourDetails extends AppCompatActivity {
     TextView mElementsLink;
     TextView mElementsAboutMe;
 
-    public NeighbourDetails(Activity activity) {
-    }
+    private NeighbourApiService mApiService;
+    private Neighbour mNeighbour;
+    private NeighbourDetailsActivity holder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neighbour_details);
+        mNeighbour = (Neighbour) getIntent().getSerializableExtra("Neighbour");
 
         mAddFavorite = findViewById(R.id.detail_button_add_favorite);
         mButton = findViewById(R.id.detail_button);
+
         mAvatar = findViewById(R.id.detail_avatar);
+        Glide.with(holder.mAvatar.getContext())
+                .load(mNeighbour.getAvatarUrl())
+                .into(holder.mAvatar);
+
         mName = findViewById(R.id.detail_name);
+        mName.setText(mNeighbour.getName());
+
         mElementsName = findViewById(R.id.detail_elements_name);
+        mElementsName.setText(mNeighbour.getName());
+
         mElementsAddress = findViewById(R.id.detail_elements_address);
+        mElementsAddress.setText(mNeighbour.getAddress());
+
         mElementsNumber = findViewById(R.id.detail_elements_number);
+        mElementsNumber.setText(mNeighbour.getPhoneNumber());
+
         mElementsLink = findViewById(R.id.detail_elements_link);
+
         mElementsAboutMe = findViewById(R.id.detail_elements_aboutme);
+        mElementsAboutMe.setText(mNeighbour.getAboutMe());
 
-        mAddFavorite.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
+        mApiService = DI.getNeighbourApiService();
 
+        mButton.setOnClickListener(view -> finish());
+
+        mAddFavorite.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            if(isChecked) {
+                addNeighbourToFavorites(mNeighbour);
+            }
+            else {
+                deleteFavoriteNeighbour(mNeighbour);
             }
         });
-
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        }
-        public static void addNeighbourToFavorites(Neighbour neighbour) { DI.getNeighbourApiService(); }
-
-        public static void deleteFavoriteNeighbour(Neighbour neighbour) { DI.getNeighbourApiService(); }
-
-        static NeighbourApiService getFavoritesNeighbours() { return DI.getNeighbourApiService(); }
     }
+
+    public void addNeighbourToFavorites(Neighbour neighbour) {
+        mApiService.addNeighbourToFavorites(neighbour);
+    }
+
+    public void deleteFavoriteNeighbour(Neighbour neighbour) {
+        mApiService.deleteFavoriteNeighbour(neighbour);
+    }
+
+
+}

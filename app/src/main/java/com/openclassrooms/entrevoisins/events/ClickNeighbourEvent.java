@@ -2,9 +2,14 @@ package com.openclassrooms.entrevoisins.events;
 
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
-public class FavoritesNeighbourEvent {
+public class ClickNeighbourEvent {
+    //TODO mettre neighbour neighbour et boolean favoris
 
-    public Neighbour mFavorite;
+    public boolean mFavorite;
+    public Neighbour mNeighbour;
 
-    public FavoritesNeighbourEvent(Neighbour favorite) {this.mFavorite = favorite; }
+    public ClickNeighbourEvent(Neighbour pNeighbour, boolean pFavorite) {
+        mFavorite = pFavorite;
+        mNeighbour = pNeighbour;
+    }
 }

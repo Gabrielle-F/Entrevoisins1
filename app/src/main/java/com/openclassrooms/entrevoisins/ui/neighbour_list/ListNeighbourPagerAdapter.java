@@ -16,10 +16,15 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
      * @param position
      * @return
      */
+
+    //TODO selon position mettre paramètre true or false
     @Override
     public Fragment getItem(int position) {
-        return NeighbourFragment.newInstance();
-    }
+        if (position == 0) {
+            return NeighbourFragment.newInstance(false); }
+        else if (position == 1) {
+            return NeighbourFragment.newInstance(true); }
+    else { return null; }}
 
     /**
      * get the number of pages
@@ -27,6 +32,6 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
      */
     @Override
     public int getCount() {
-        return 1;
+        return 2;
     }
 }
