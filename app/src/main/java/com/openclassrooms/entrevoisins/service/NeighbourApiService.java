@@ -1,5 +1,7 @@
 package com.openclassrooms.entrevoisins.service;
 
+import android.support.v4.app.Fragment;
+
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import java.util.List;
@@ -16,15 +18,22 @@ public interface NeighbourApiService {
      */
     List<Neighbour> getNeighbours();
 
+    List<Neighbour> getFavoritesNeighbour();
+
+    void addNeighbourToFavorites(Neighbour neighbour);
+
+    /**
+     * Create a neighbour
+     * @param neighbour
+     */
+
+    void createNeighbour(Neighbour neighbour);
+
     /**
      * Deletes a neighbour
      * @param neighbour
      */
     void deleteNeighbour(Neighbour neighbour);
 
-    /**
-     * Create a neighbour
-     * @param neighbour
-     */
-    void createNeighbour(Neighbour neighbour);
+    void deleteFavoriteNeighbour(Neighbour neighbour);
 }
