@@ -27,7 +27,6 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
 
     private NeighbourApiService mApiService;
     private Neighbour mNeighbour;
-    private NeighbourDetailsActivity holder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +38,9 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
         mButton = findViewById(R.id.detail_button);
 
         mAvatar = findViewById(R.id.detail_avatar);
-        Glide.with(holder.mAvatar.getContext())
+        Glide.with(this)
                 .load(mNeighbour.getAvatarUrl())
-                .into(holder.mAvatar);
+                .into(mAvatar);
 
         mName = findViewById(R.id.detail_name);
         mName.setText(mNeighbour.getName());
