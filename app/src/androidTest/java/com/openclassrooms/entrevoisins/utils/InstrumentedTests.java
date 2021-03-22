@@ -21,5 +21,4 @@ public class InstrumentedTests {
     public void setup() {
         neighbours = DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
     }
-
 }
