@@ -11,6 +11,7 @@ import org.junit.runners.JUnit4;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Unit test on Neighbour service
@@ -40,6 +41,11 @@ public class NeighbourServiceTest {
         assertEquals(favoriteNeighboursList, favoritesNeighbours);
     }
 
-
+    @Test
+    public void deleteNeighbourWithSucces() {
+        Neighbour neighbourToDelete = service.getNeighbours().get(0);
+        service.deleteNeighbour(neighbourToDelete);
+        assertFalse(service.getNeighbours().contains(neighbourToDelete));
+    }
 
 }
