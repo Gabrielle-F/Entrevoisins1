@@ -1,7 +1,5 @@
 package com.openclassrooms.entrevoisins.service;
 
-import android.support.v4.app.Fragment;
-
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import java.util.List;
@@ -14,6 +12,7 @@ public interface NeighbourApiService {
 
     /**
      * Get all my Neighbours
+     *
      * @return {@link List}
      */
     List<Neighbour> getNeighbours();
@@ -24,6 +23,7 @@ public interface NeighbourApiService {
 
     /**
      * Create a neighbour
+     *
      * @param neighbour
      */
 
@@ -31,6 +31,7 @@ public interface NeighbourApiService {
 
     /**
      * Deletes a neighbour
+     *
      * @param neighbour
      */
     void deleteNeighbour(Neighbour neighbour);

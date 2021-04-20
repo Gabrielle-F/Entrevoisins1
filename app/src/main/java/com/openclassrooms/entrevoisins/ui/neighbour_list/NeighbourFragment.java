@@ -1,7 +1,6 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,8 +63,6 @@ public class NeighbourFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
-
-
         readBundle();
         return view;
     }
@@ -79,7 +76,8 @@ public class NeighbourFragment extends Fragment {
         if (mFavorite) {
             mNeighbours = mApiService.getFavoritesNeighbour();
         } else mNeighbours = mApiService.getNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, mFavorite));
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter
+                (mNeighbours, mFavorite));
     }
 
     @Override
@@ -129,4 +127,4 @@ public class NeighbourFragment extends Fragment {
         startActivity(intent);
     }
 
-    }
+}

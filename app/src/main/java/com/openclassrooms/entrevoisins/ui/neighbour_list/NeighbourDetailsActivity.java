@@ -1,11 +1,11 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
@@ -15,7 +15,7 @@ import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 public class NeighbourDetailsActivity extends AppCompatActivity {
 
-    ToggleButton mAddFavorite;
+    FloatingActionButton mAddFavorite;
     ImageButton mButton;
     ImageView mAvatar;
     TextView mName;
@@ -55,6 +55,7 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
         mElementsNumber.setText(mNeighbour.getPhoneNumber());
 
         mElementsLink = findViewById(R.id.detail_elements_link);
+        mElementsLink.setText(mNeighbour.getFacebook());
 
         mElementsAboutMe = findViewById(R.id.detail_elements_aboutme);
         mElementsAboutMe.setText(mNeighbour.getAboutMe());
@@ -63,23 +64,17 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
 
         mButton.setOnClickListener(view -> finish());
 
-        mAddFavorite.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-            if(isChecked) {
-                addNeighbourToFavorites(mNeighbour);
-            }
-            else {
-                deleteFavoriteNeighbour(mNeighbour);
+        mAddFavorite.setOnClickListener(view -> {
+            {
+                if (mApiService.getFavoritesNeighbour().contains(mNeighbour)) {
+                    mAddFavorite.setActivated(false);
+                    mApiService.deleteFavoriteNeighbour(mNeighbour);
+                } else {
+                    mAddFavorite.setActivated(true);
+                    mApiService.addNeighbourToFavorites(mNeighbour);
+                }
             }
         });
     }
-
-    public void addNeighbourToFavorites(Neighbour neighbour) {
-        mApiService.addNeighbourToFavorites(neighbour);
-    }
-
-    public void deleteFavoriteNeighbour(Neighbour neighbour) {
-        mApiService.deleteFavoriteNeighbour(neighbour);
-    }
-
 
 }

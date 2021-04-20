@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:drawable="@drawable/ic_baseline_star_border"
-        android:state_checked="false" />
+        android:state_activated="false" />
     <item android:drawable="@drawable/ic_baseline_star"
-        android:state_checked="true"/>
+        android:state_activated="true"/>
 </selector>

@@ -15,11 +15,11 @@ public class DeleteNeighbourEvent {
 
     /**
      * Constructor.
+     *
      * @param pNeighbour
      */
     public DeleteNeighbourEvent(Neighbour pNeighbour, boolean pFavorite) {
         mNeighbour = pNeighbour;
         mFavorite = pFavorite;
-
     }
 }
