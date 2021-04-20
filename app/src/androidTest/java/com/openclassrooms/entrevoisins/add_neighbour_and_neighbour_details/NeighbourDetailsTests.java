@@ -45,19 +45,6 @@ public class NeighbourDetailsTests {
         mApiService = DI.getNewInstanceApiService();
     }
 
-    //We assert that the star button can be clicked
-    @Test
-    public void starButtonIsClickable() {
-        onView(ViewMatchers.withId(R.id.detail_button_add_favorite)).check(matches(ViewMatchers.isClickable()));
-    }
-
-    //We assert that the arrow button can be clicked
-    @Test
-    public void backButtonIsClickable() {
-        onView(ViewMatchers.withId(R.layout.activity_neighbour_details));
-        onView(ViewMatchers.withId(R.id.detail_button)).check(matches(ViewMatchers.isClickable()));
-    }
-
     //When the user click on a neighbour it show the details page
     @Test
     public void myNeighboursList_clickOnNeighbour_shouldShowNeighbourDetails() {
